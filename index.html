@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONGRATULATIONS! 🎉</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6e48aa, #9d50bb);
+            color: white;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        #countdown {
+            font-size: 2em;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+        #prize-reveal {
+            display: none;
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #ffcc00;
+        }
+        button {
+            background: #ffcc00;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #ffdd33;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 CONGRATULATIONS! 🎉</h1>
+        <p>You've just won <strong>$1,000,000</strong> in our secret lottery!</p>
+        <p>Claim your prize in...</p>
+        <div id="countdown">10</div>
+        <div id="prize-reveal">
+            PSYCH! You just got pranked! 😂<br>
+            (But imagine if it were real...)
+        </div>
+        <button onclick="resetPrank()">Try Again?</button>
+    </div>
+
+    <script>
+        let timeLeft = 10;
+        const countdownEl = document.getElementById("countdown");
+        const prizeReveal = document.getElementById("prize-reveal");
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            countdownEl.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                countdownEl.style.display = "none";
+                prizeReveal.style.display = "block";
+            }
+        }, 1000);
+
+        function resetPrank() {
+            timeLeft = 10;
+            countdownEl.style.display = "block";
+            prizeReveal.style.display = "none";
+            countdownEl.textContent = timeLeft;
+            const newCountdown = setInterval(() => {
+                timeLeft--;
+                countdownEl.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(newCountdown);
+                    countdownEl.style.display = "none";
+                    prizeReveal.style.display = "block";
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
